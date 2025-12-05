@@ -41,17 +41,8 @@ Lancement
 
 Structure du Projet
 
-Documentation API
-
-Déploiement
-
-Roadmap
-
 Contribution
 
-Licence
-
-Contact
 
 ✨ Introduction
 
