@@ -178,7 +178,7 @@ lettrify/
 │── ai/                 # Google AI proxy
 │── exports/            # PDF & DOCX
 │── dashboard/          # Stats utilisateur + admin
-│── config/             # Settings Django
+│── core/             # Settings Django
 │── media/              # Fichiers uploadés
 │── manage.py
 │── requirements.txt
