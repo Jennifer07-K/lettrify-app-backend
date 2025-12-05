@@ -1,148 +1,116 @@
-📄 Lettrify – Backend (Django REST API)
+# 📄 Lettrify – Backend (Django REST API)
 
 Plateforme de génération automatisée de lettres administratives togolaises + CV Builder
 
+---
 
+## 🧭 Table des matières
 
+- [Introduction](#introduction)
+- [Fonctionnalités](#fonctionnalités-principales)
+- [Technologies](#technologies-utilisées)
+- [Installation](#installation--setup)
+- [Structure du Projet](#structure-du-projet)
+- [Contribution](#contribution)
 
+---
 
+## ✨ Introduction
 
-
-
-
-
-
-
-🧭 Table des matières
-
-Introduction
-
-Fonctionnalités
-
-Technologies
-
-Installation
-
-Cloner
-
-Environnement virtuel
-
-Dépendances
-
-Variables d’environnement
-
-Base PostgreSQL
-
-Migrations
-
-Superuser
-
-Lancement
-
-Structure du Projet
-
-Contribution
-
-
-✨ Introduction
-
-Lettrify est une plateforme web moderne permettant de créer automatiquement des lettres administratives togolaises grâce à un système de wizard multi-étapes, avec export PDF/DOCX,aperçu de la lettre en tant réel durant les étapes, aide IA .
+**Lettrify** est une plateforme web moderne permettant de créer automatiquement des lettres administratives togolaises grâce à un système de wizard multi-étapes, avec export PDF/DOCX, aperçu de la lettre en temps réel durant les étapes, et aide IA.
 
 Le backend fournit une API sécurisée destinée au frontend React.js + Tailwind.
 
- Fonctionnalités principales
-🔐 Authentification (JWT)
+---
 
-Inscription / Connexion / Déconnexion
+## 🎯 Fonctionnalités principales
 
-Mise à jour du profil
+### 🔐 Authentification (JWT)
 
-Photo, profession, email…
+- Inscription / Connexion / Déconnexion
+- Mise à jour du profil
+- Photo, profession, email…
 
-✉️ Lettres administratives
+### ✉️ Lettres administratives
 
-Wizard multi-étapes
+- Wizard multi-étapes
+- Sauvegarde automatique des brouillons
+- Formules d'introduction & politesse
+- Gestion du destinataire (option À)
+- Signature + Nom de la signature
+- Historique complet
 
-Sauvegarde automatique des brouillons
+### 📄 Export
 
-Formules d’introduction & politesse
+- Export PDF (ReportLab)
+- Export DOCX (python-docx)
+- Format officiel (logo pleine largeur, marges réduites…)
 
-Gestion du destinataire (option À)
+### 📊 Dashboard
 
-Signature + Nom de la signature
+- **Utilisateur** : statistiques, historique, activités
 
-Historique 
+### 📑 CV Builder intégré
 
-📄 Export
+- Upload de CV
+- Génération de CV simple
+- Stockage par utilisateur
 
-Export PDF (ReportLab)
+### 🤖 Aide rédactionnelle IA
 
-Export DOCX (python-docx)
+- Suggestions
+- Correction
+- Amélioration via Google AI Studio (appelé par le frontend)
 
-Format officiel (logo pleine largeur, marges réduites…)
+---
 
-📊 Dashboard
+## 🧰 Technologies utilisées
 
-Utilisateur :
+- **Django** – Framework backend
+- **Django REST Framework** – API REST
+- **PostgreSQL** – Base de données
+- **SimpleJWT** – Authentification JWT
+- **ReportLab** – Génération PDF
+- **python-docx** – Génération DOCX
+- **Django Storage** – Gestion des fichiers
+- **Google AI Studio** – Assistance IA
 
-statistiques, historique, activités
+---
 
+## 📦 Installation & Setup
 
+### 🔽 1. Cloner le dépôt
 
-📑 CV Builder intégré
-
-Upload de CV
-
-Génération de CV simple
-
-Stockage par utilisateur
-
-🤖 Aide rédactionnelle IA
-
-Suggestions
-
-Correction
-
-Amélioration
-via Google AI Studio (appelé par le frontend)
-
-🧰 Technologies utilisées
-
-Django
-
-Django REST Framework
-
-PostgreSQL
-
-SimpleJWT
-
-ReportLab
-
-python-docx
-
-Django Storage
-
-Google AI Studio
-
-
-📦 Installation & Setup
-🔽 1. Cloner le dépôt
+```bash
 git clone https://github.com/votre-nom/lettrify-backend.git
 cd lettrify-app-backend
+```
 
-🐍 2. Créer un environnement virtuel
-Linux / macOS
+### 🐍 2. Créer un environnement virtuel
+
+#### Linux / macOS
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-Windows
+#### Windows
+
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-📦 3. Installer les dépendances
+### 📦 3. Installer les dépendances
+
+```bash
 pip install -r requirements.txt
+```
 
-⚙️ 4. Créer le fichier .env
+### ⚙️ 4. Créer le fichier `.env`
+
+```env
 DEBUG=True
 SECRET_KEY=change_me
 
@@ -153,43 +121,63 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 
 GOOGLE_AI_API_KEY=your_google_api_key
+```
 
-🗄️ 5. Créer la base PostgreSQL
+### 🗄️ 5. Créer la base PostgreSQL
+
+```sql
 CREATE DATABASE lettrify_db;
+```
 
-🏗️ 6. Appliquer les migrations
+### 🏗️ 6. Appliquer les migrations
+
+```bash
 python manage.py migrate
+```
 
-👤 7. Créer un superutilisateur
+### 👤 7. Créer un superutilisateur
+
+```bash
 python manage.py createsuperuser
+```
 
-▶️ 8. Lancer le serveur
+### ▶️ 8. Lancer le serveur
+
+```bash
 python manage.py runserver
+```
 
-
-Backend disponible :
+**Backend disponible :**  
 👉 http://127.0.0.1:8000/
 
-📁 Structure du projet
+---
+
+## 📁 Structure du projet
+
+```
 lettrify/
-│── users/              # Auth + profil
-│── letters/            # Wizard + formules + historique
-│── cv/                 # CV builder
-│── ai/                 # Google AI proxy
-│── exports/            # PDF & DOCX
-│── dashboard/          # Stats utilisateur + admin
-│── core/             # Settings Django
-│── media/              # Fichiers uploadés
-│── manage.py
-│── requirements.txt
+│
+├── users/              # Auth + profil
+├── letters/            # Wizard + formules + historique
+├── cv/                 # CV builder
+├── ai/                 # Google AI proxy
+├── exports/            # PDF & DOCX
+├── dashboard/          # Stats utilisateur + admin
+├── core/               # Settings Django
+├── media/              # Fichiers uploadés
+├── manage.py
+└── requirements.txt
+```
 
-🤝 Contribution
+---
 
-Fork
+## 🤝 Contribution
 
-Créer une branche
+1. **Fork** le projet
+2. Créer une **branche** pour votre fonctionnalité
+3. **Commit** & **Push** vos changements
+4. Ouvrir une **Pull Request** ✔
 
-Commit & Push
+---
 
-Pull Request ✔
-
+**Développé avec ❤️ pour simplifier l'administration au Togo**
